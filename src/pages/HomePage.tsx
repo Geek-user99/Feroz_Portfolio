@@ -25,38 +25,17 @@ const ROLE_TEXT = 'Graphic & Motion Designer';
 
 function LoopingRoleTypewriter() {
   const [count, setCount] = useState(0);
-  const [phase, setPhase] = useState<'typing' | 'pauseFull' | 'deleting' | 'pauseEmpty'>('typing');
 
   useEffect(() => {
-    let delay = 65;
-    if (phase === 'typing') {
-      if (count >= ROLE_TEXT.length) {
-        const t = window.setTimeout(() => setPhase('pauseFull'), 2000);
-        return () => window.clearTimeout(t);
-      }
-      delay = 65;
-      const t = window.setTimeout(() => setCount((c) => c + 1), delay);
-      return () => window.clearTimeout(t);
+    if (count >= ROLE_TEXT.length) {
+      const pauseTimer = window.setTimeout(() => setCount(0), 2400);
+      return () => window.clearTimeout(pauseTimer);
     }
 
-    if (phase === 'pauseFull') {
-      const t = window.setTimeout(() => setPhase('deleting'), 200);
-      return () => window.clearTimeout(t);
-    }
-
-    if (phase === 'deleting') {
-      if (count <= 0) {
-        const t = window.setTimeout(() => setPhase('pauseEmpty'), 350);
-        return () => window.clearTimeout(t);
-      }
-      delay = 36;
-      const t = window.setTimeout(() => setCount((c) => c - 1), delay);
-      return () => window.clearTimeout(t);
-    }
-
-    const t = window.setTimeout(() => setPhase('typing'), 250);
-    return () => window.clearTimeout(t);
-  }, [count, phase]);
+    const stepDelay = count === 0 ? 180 : 42;
+    const typeTimer = window.setTimeout(() => setCount((c) => c + 1), stepDelay);
+    return () => window.clearTimeout(typeTimer);
+  }, [count]);
 
   return (
     <p
