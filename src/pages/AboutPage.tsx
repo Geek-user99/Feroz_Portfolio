@@ -10,6 +10,7 @@ import {
   StaggerItem,
 } from '../components/MotionPrimitives';
 import {ABOUT_CLIENTS, PROJECTS} from '../data/portfolio';
+import {assetUrl} from '../lib/assets';
 import {Link} from '../lib/router';
 
 export function AboutPage() {
@@ -30,7 +31,7 @@ export function AboutPage() {
           <HeroItem delay={0.08} className="md:col-span-5">
             <div className="max-w-sm border border-border bg-surface">
               <img
-                src="/feroz-portrait.png"
+                src={assetUrl('/feroz-portrait.png')}
                 alt="Portrait of Alamgir Sordar Feroz"
                 className="w-full object-contain"
                 referrerPolicy="no-referrer"

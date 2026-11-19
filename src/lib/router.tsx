@@ -10,20 +10,40 @@ const RouterContext = createContext<RouterContextValue>({
   navigate: () => {},
 });
 
-function normalizePath(path: string): string {
-  const [clean] = path.split('#');
-  if (!clean || clean === '') return '/';
-  return clean.length > 1 && clean.endsWith('/') ? clean.slice(0, -1) : clean;
+function getBasePrefix(): string {
+  const raw = import.meta.env.BASE_URL || '/';
+  if (raw === '/' || raw === './') return '';
+  return raw.endsWith('/') ? raw.slice(0, -1) : raw;
+}
+
+function stripBase(fullPath: string): string {
+  const base = getBasePrefix();
+  const [clean] = fullPath.split('#');
+  let routePath = clean || '/';
+  if (base && (routePath === base || routePath.startsWith(`${base}/`))) {
+    routePath = routePath.slice(base.length) || '/';
+  }
+  return routePath.length > 1 && routePath.endsWith('/')
+    ? routePath.slice(0, -1)
+    : routePath;
+}
+
+function withBase(routeTo: string): string {
+  const base = getBasePrefix();
+  const [pathPart, hashPart] = routeTo.split('#');
+  const normalized = pathPart.startsWith('/') ? pathPart : `/${pathPart}`;
+  const joined = base ? `${base}${normalized === '/' ? '/' : normalized}` : normalized;
+  return hashPart ? `${joined}#${hashPart}` : joined;
 }
 
 export function RouterProvider({children}: {children: React.ReactNode}) {
   const [pathname, setPathname] = useState<string>(() =>
-    normalizePath(window.location.pathname),
+    stripBase(window.location.pathname),
   );
 
   useEffect(() => {
     const onPopState = () => {
-      setPathname(normalizePath(window.location.pathname));
+      setPathname(stripBase(window.location.pathname));
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
@@ -31,10 +51,11 @@ export function RouterProvider({children}: {children: React.ReactNode}) {
 
   const navigate = useCallback((to: string) => {
     const [pathPart, hashPart] = to.split('#');
-    const targetPath = normalizePath(pathPart || '/');
+    const targetPath = stripBase(pathPart || '/');
+    const fullTargetUrl = withBase(to);
 
-    if (targetPath !== normalizePath(window.location.pathname)) {
-      window.history.pushState({}, '', to);
+    if (targetPath !== stripBase(window.location.pathname)) {
+      window.history.pushState({}, '', fullTargetUrl);
       setPathname(targetPath);
     }
 
@@ -68,7 +89,7 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
 export function Link({to, className = '', activeClassName, onClick, children, ...rest}: LinkProps) {
   const {pathname, navigate} = useRouter();
-  const targetPath = normalizePath(to);
+  const targetPath = stripBase(to);
   const isActive =
     targetPath === '/'
       ? pathname === '/'
@@ -94,7 +115,7 @@ export function Link({to, className = '', activeClassName, onClick, children, ..
 
   return (
     <a
-      href={to}
+      href={withBase(to)}
       onClick={handleClick}
       className={mergedClass}
       aria-current={isActive ? 'page' : undefined}

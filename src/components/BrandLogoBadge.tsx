@@ -1,13 +1,15 @@
+import {assetUrl} from '../lib/assets';
+
 const PNG_LOGOS: Record<string, string> = {
-  PRAN: '/assets/pran-logo.png',
-  RFL: '/assets/rfl-logo.png',
-  AAFI: '/assets/aafi-logo.png',
-  GETWELL: '/assets/getwell-logo.png',
-  SUNSHINE: '/assets/sunshine-logo.png',
-  'DECENT TYRE': '/assets/decent_tyre-logo.png',
-  SAFEMET: '/assets/safemet-logo.png',
-  TOPPER: '/assets/topper-logo.png',
-  'DESHBANDHU GROUP': '/assets/deshbandhu-logo.png',
+  PRAN: assetUrl('/assets/pran-logo.png'),
+  RFL: assetUrl('/assets/rfl-logo.png'),
+  AAFI: assetUrl('/assets/aafi-logo.png'),
+  GETWELL: assetUrl('/assets/getwell-logo.png'),
+  SUNSHINE: assetUrl('/assets/sunshine-logo.png'),
+  'DECENT TYRE': assetUrl('/assets/decent_tyre-logo.png'),
+  SAFEMET: assetUrl('/assets/safemet-logo.png'),
+  TOPPER: assetUrl('/assets/topper-logo.png'),
+  'DESHBANDHU GROUP': assetUrl('/assets/deshbandhu-logo.png'),
 };
 
 export function BrandLogoBadge({brand, className = ''}: {brand: string; className?: string}) {

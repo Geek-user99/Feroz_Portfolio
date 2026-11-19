@@ -18,6 +18,7 @@ import {
   WHATSAPP_URL,
   getProjectBySlug,
 } from '../data/portfolio';
+import {assetUrl} from '../lib/assets';
 import {Link} from '../lib/router';
 
 const ROLE_TEXT = 'Graphic & Motion Designer';
@@ -208,7 +209,7 @@ export function HomePage() {
             >
               <div className="portrait-stage">
                 <img
-                  src="/assets/hero-feroz.png"
+                  src={assetUrl('/assets/hero-feroz.png')}
                   alt="Alamgir Sordar Feroz"
                   fetchPriority="high"
                   className="portrait-img"

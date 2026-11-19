@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
 import {WHATSAPP_URL} from '../data/portfolio';
+import {assetUrl} from '../lib/assets';
 import {Link} from '../lib/router';
 import {EASE_EDITORIAL, Reveal} from './MotionPrimitives';
 
@@ -37,7 +38,7 @@ export function Header() {
           aria-label="Feroz home"
         >
           <img
-            src="/assets/site-logo.png"
+            src={assetUrl('/assets/site-logo.png')}
             alt="Feroz"
             className="site-logo"
           />
@@ -144,7 +145,7 @@ export function Footer() {
         <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between md:px-10">
           <div className="flex items-center gap-4">
             <img
-              src="/assets/site-logo.png"
+              src={assetUrl('/assets/site-logo.png')}
               alt="Feroz"
               className="site-logo"
             />
