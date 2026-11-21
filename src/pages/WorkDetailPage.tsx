@@ -7,6 +7,7 @@ import {
   StaggerGrid,
   StaggerItem,
 } from '../components/MotionPrimitives';
+import {SeoHead} from '../components/SeoHead';
 import {PROJECTS, getProjectBySlug} from '../data/portfolio';
 import {Link} from '../lib/router';
 
@@ -146,6 +147,24 @@ export function WorkDetailPage({slug}: {slug: string}) {
 
   return (
     <div className="min-h-screen">
+      <SeoHead
+        title={`${project.title} — Alamgir Sordar Feroz`}
+        description={`${project.title} brand packaging, key visuals, and campaign artwork designed for ${project.client} by Alamgir Sordar Feroz.`}
+        image={project.cover}
+        imageAlt={`${project.title} design showcase`}
+        type="article"
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: project.title,
+          creator: {
+            '@type': 'Person',
+            name: 'Alamgir Sordar Feroz',
+          },
+          about: project.client,
+          image: project.cover,
+        }}
+      />
       <Header />
 
       <main className="mx-auto max-w-[1600px] px-5 pt-10 md:px-10">

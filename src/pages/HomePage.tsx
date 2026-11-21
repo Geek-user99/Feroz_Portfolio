@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {motion} from 'motion/react';
 import {ContactForm} from '../components/ContactForm';
 import {Footer, Header, SectionHeading, WhatsAppIcon} from '../components/Layout';
+import {SeoHead} from '../components/SeoHead';
 import {
   EASE_EDITORIAL,
   HeroItem,
@@ -112,6 +113,11 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <SeoHead
+        title="Alamgir Sordar Feroz — Graphic & Motion Designer"
+        description="Portfolio of Alamgir Sordar Feroz, Graphic & Motion Designer in Bangladesh crafting packaging, key visuals, and campaigns for PRAN, RFL, AKIJ & Deshbandhu."
+        image={assetUrl('/assets/hero-feroz.png')}
+      />
       <Header />
 
       <main>

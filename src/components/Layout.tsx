@@ -210,17 +210,24 @@ export function SectionHeading({
   n,
   title,
   lead,
+  as = 'h2',
 }: {
   n: string;
   title: string;
   lead?: string;
+  as?: 'h1' | 'h2';
 }) {
+  const HeadingTag = as;
   return (
     <Reveal className="max-w-2xl">
       <p className="label !text-accent">
         {n} / {title}
       </p>
-      {lead && <h2 className="display mt-4 text-4xl md:text-6xl">{lead}</h2>}
+      {lead && (
+        <HeadingTag className="display mt-4 text-4xl md:text-6xl">
+          {lead}
+        </HeadingTag>
+      )}
     </Reveal>
   );
 }

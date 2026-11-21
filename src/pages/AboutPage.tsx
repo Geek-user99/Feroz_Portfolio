@@ -9,6 +9,7 @@ import {
   StaggerGrid,
   StaggerItem,
 } from '../components/MotionPrimitives';
+import {SeoHead} from '../components/SeoHead';
 import {ABOUT_CLIENTS, PROJECTS} from '../data/portfolio';
 import {assetUrl} from '../lib/assets';
 import {Link} from '../lib/router';
@@ -18,6 +19,22 @@ export function AboutPage() {
 
   return (
     <div className="min-h-screen">
+      <SeoHead
+        title="About — Alamgir Sordar Feroz"
+        description="Learn about Alamgir Sordar Feroz, a Bangladesh-based Graphic & Motion Designer with 200+ projects across PRAN, RFL, AKIJ, Deshbandhu Group, and Frutika."
+        image={assetUrl('/feroz-portrait.png')}
+        type="profile"
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'AboutPage',
+          name: 'About Alamgir Sordar Feroz',
+          mainEntity: {
+            '@type': 'Person',
+            name: 'Alamgir Sordar Feroz',
+            jobTitle: 'Graphic & Motion Designer',
+          },
+        }}
+      />
       <Header />
 
       <main className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
@@ -25,6 +42,7 @@ export function AboutPage() {
           n="01"
           title="About"
           lead="Design work built around brands, packaging and campaigns."
+          as="h1"
         />
 
         <div className="mt-12 grid gap-12 md:grid-cols-12">

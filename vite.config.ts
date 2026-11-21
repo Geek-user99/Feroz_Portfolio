@@ -5,7 +5,9 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
-  const hasCname = fs.existsSync(path.resolve(__dirname, 'public/CNAME'));
+  const hasCname =
+    fs.existsSync(path.resolve(__dirname, 'public/CNAME')) ||
+    fs.existsSync(path.resolve(__dirname, 'CNAME'));
   const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
   const base =
     process.env.VITE_BASE_PATH ||

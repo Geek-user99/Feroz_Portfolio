@@ -1,15 +1,35 @@
 import {ContactForm} from '../components/ContactForm';
 import {Footer, Header, SectionHeading, WhatsAppIcon} from '../components/Layout';
 import {HeroItem} from '../components/MotionPrimitives';
+import {SeoHead} from '../components/SeoHead';
 import {WHATSAPP_NUMBER, WHATSAPP_URL} from '../data/portfolio';
 
 export function ContactPage() {
   return (
     <div className="min-h-screen">
+      <SeoHead
+        title="Contact — Alamgir Sordar Feroz"
+        description="Connect with Graphic & Motion Designer Alamgir Sordar Feroz on WhatsApp (+880 1623-670640) for packaging, key visuals, and brand campaign commissions."
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          name: 'Contact Alamgir Sordar Feroz',
+          mainEntity: {
+            '@type': 'Person',
+            name: 'Alamgir Sordar Feroz',
+            telephone: '+8801623670640',
+          },
+        }}
+      />
       <Header />
 
       <main className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
-        <SectionHeading n="04" title="Contact" lead="Let's work together." />
+        <SectionHeading
+          n="04"
+          title="Contact"
+          lead="Let's work together."
+          as="h1"
+        />
 
         <div className="mt-12 grid gap-12 md:grid-cols-12">
           <HeroItem delay={0.08} className="md:col-span-5">

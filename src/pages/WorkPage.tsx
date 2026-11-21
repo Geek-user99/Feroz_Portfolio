@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {AnimatePresence, motion} from 'motion/react';
 import {Footer, Header, SectionHeading} from '../components/Layout';
 import {EASE_EDITORIAL, Reveal} from '../components/MotionPrimitives';
+import {SeoHead} from '../components/SeoHead';
 import {PROJECTS, WORK_FILTERS} from '../data/portfolio';
 import {Link} from '../lib/router';
 
@@ -15,10 +16,21 @@ export function WorkPage() {
 
   return (
     <div className="min-h-screen">
+      <SeoHead
+        title="Work & Brand Portfolio — Alamgir Sordar Feroz"
+        description="Explore packaging, key visuals, and brand campaign artwork by Alamgir Sordar Feroz for PRAN, RFL, AKIJ, Deshbandhu Group, Frutika, AAFI, Farmland, and Topper."
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Work & Brand Portfolio — Alamgir Sordar Feroz',
+          description:
+            'Complete collection of packaging, key visuals, and campaign artwork by Alamgir Sordar Feroz.',
+        }}
+      />
       <Header />
 
       <main className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24">
-        <SectionHeading n="03" title="Portfolio" lead="Work" />
+        <SectionHeading n="03" title="Portfolio" lead="Work" as="h1" />
         <Reveal delay={0.08}>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             Packaging, key visuals and campaign material produced for consumer

@@ -5,6 +5,7 @@ import {
   StaggerGrid,
   StaggerItem,
 } from '../components/MotionPrimitives';
+import {SeoHead} from '../components/SeoHead';
 import {ABOUT_CLIENTS, EXPERTISE_AREAS} from '../data/portfolio';
 import {Link} from '../lib/router';
 
@@ -13,6 +14,10 @@ export function ExperiencePage() {
 
   return (
     <div className="min-h-screen">
+      <SeoHead
+        title="Experience & Disciplines — Alamgir Sordar Feroz"
+        description="Explore 200+ completed brand engagements and creative disciplines in packaging design, key visuals, motion graphics, and video editing by Alamgir Sordar Feroz."
+      />
       <Header />
 
       <main className="mx-auto max-w-[1600px] px-5 md:px-10">
